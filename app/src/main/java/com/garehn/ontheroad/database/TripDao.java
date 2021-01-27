@@ -15,6 +15,6 @@ public interface TripDao {
     void createTrip (Trip trip);
 
     @Query("SELECT * FROM Trip WHERE id = :tripId")
-    LiveData<Trip> getTrip(long tripId);
+    Trip getTrip(long tripId);
 
 }

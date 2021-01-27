@@ -1,3 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-</resources>
+
+        <dimen name="size_title">24sp</dimen>
+        <dimen name="size_text">14sp</dimen>
+        <dimen name="size_text_small">12sp</dimen>
+        <dimen name="title_padding">32sp</dimen>
+        <dimen name="default_padding">12sp</dimen>
+        <dimen name="small_padding">2sp</dimen>
+        <dimen name="icon_size">128sp</dimen>
+        <dimen name="icon_main_size">256sp</dimen>
+        <dimen name="wave_size">48sp</dimen>
+        <dimen name="button_size">48sp</dimen>
+    </resources>

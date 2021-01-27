@@ -16,6 +16,7 @@ public class Trip {
     private String name;
     private int budget;
     private boolean isSelected;
+    private int duration;
 
     /*----------------------------------------------------------------------------------------------
     CONSTRUCTOR
@@ -23,10 +24,11 @@ public class Trip {
 
     public Trip(){}
 
-    public Trip(long i, String n, int b){
+    public Trip(long i, String n, int b, int d){
         id = i;
         name = n;
         budget = b;
+        duration = d;
         isSelected = false;
     }
 
@@ -64,6 +66,14 @@ public class Trip {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
 

@@ -14,7 +14,7 @@ import java.util.List;
 public interface CostDao {
 
     @Query("SELECT * FRom Cost WHERE tripId = :tripId")
-    LiveData<List<Cost>> getCosts(long tripId);
+    List<Cost> getCosts(long tripId);
 
     @Insert
     long insertCost(Cost cost);

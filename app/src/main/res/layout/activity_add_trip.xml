@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTripActivity">
+
+    <TextView
+        android:id="@+id/travel_text0"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_height="wrap_content"
+        android:text="name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/travel_editText0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/travel_text1"
+        />
+
+    <EditText
+        android:id="@+id/travel_editText0"
+        style="@style/EditText"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/travel_text0"
+        app:layout_constraintLeft_toRightOf="@id/travel_text0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/travel_text0"
+        />
+
+    <TextView
+        android:id="@+id/travel_text1"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_height="wrap_content"
+        android:text="description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/travel_editText1"
+        app:layout_constraintTop_toBottomOf="@id/travel_text0"
+        app:layout_constraintBottom_toTopOf="@id/travel_text2"/>
+
+    <EditText
+        android:id="@+id/travel_editText1"
+        style="@style/EditText"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/travel_text1"
+        app:layout_constraintLeft_toRightOf="@id/travel_text1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/travel_text1"
+        />
+
+    <TextView
+        android:id="@+id/travel_text2"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_height="wrap_content"
+        android:text="duration (in days)"
+        app:layout_constraintTop_toBottomOf="@+id/travel_text1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/travel_editText2"
+        app:layout_constraintBottom_toTopOf="@id/travel_text3"
+        />
+
+    <EditText
+        android:id="@+id/travel_editText2"
+        style="@style/EditText"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/travel_text2"
+        app:layout_constraintLeft_toRightOf="@id/travel_text2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/travel_text2"
+        />
+
+    <TextView
+        android:id="@+id/travel_text3"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_height="wrap_content"
+        android:text="budget (in €)"
+        app:layout_constraintTop_toBottomOf="@+id/travel_text2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/travel_editText3"
+        app:layout_constraintBottom_toTopOf="@id/travel_button_add"
+        />
+
+    <EditText
+        android:id="@+id/travel_editText3"
+        style="@style/EditText"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/travel_text3"
+        app:layout_constraintLeft_toRightOf="@id/travel_text3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/travel_text3"
+        />
+
+    <Button
+        android:id="@+id/travel_button_add"
+        style="@style/Button"
+        android:text="VALIDATE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

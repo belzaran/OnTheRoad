@@ -1,5 +1,7 @@
 package com.garehn.ontheroad.trip;
 
+import android.util.Log;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -19,20 +21,21 @@ public class Cost {
     private String name;
     private long tripId;
     private boolean isSelected;
+    private static String LOG_CREATION = "Creating COST %s - %s €";
 
 
 /*----------------------------------------------------------------------------------------------
     CONSTRUCTOR
     ----------------------------------------------------------------------------------------------*/
 
-    public Cost(){
+    public Cost(){    }
 
-    }
     public Cost(String n, float p, long l){
         this.name = n;
         this.price = p;
         this.tripId = l;
         this.isSelected = false;
+        Log.i("ONTHEROAD_COST", String.format(LOG_CREATION, name, price));
     }
 
     /*----------------------------------------------------------------------------------------------
@@ -43,7 +46,7 @@ public class Cost {
         return price;
     }
 
-    public void setPrice(float cost) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

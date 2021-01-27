@@ -9,10 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnTheRoad">
-        <activity
-            android:name=".AddTravelActivity"
-            android:label="@string/title_activity_add_travel"
-            android:theme="@style/Theme.OnTheRoad.NoActionBar"></activity>
+        <activity android:name=".trip.CostActivity"></activity>
+        <activity android:name=".AddTripActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
