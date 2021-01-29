@@ -20,8 +20,9 @@ public class Cost {
     private float price;
     private String name;
     private long tripId;
+    private int categoryId;
     private boolean isSelected;
-    private static String LOG_CREATION = "Creating COST %s - %s €";
+    private static String LOG_CREATION = "Creating COST %s - %s € - type : %s";
 
 
 /*----------------------------------------------------------------------------------------------
@@ -30,12 +31,13 @@ public class Cost {
 
     public Cost(){    }
 
-    public Cost(String n, float p, long l){
+    public Cost(String n, float p, long l, int cId){
         this.name = n;
         this.price = p;
         this.tripId = l;
+        this.categoryId = cId;
         this.isSelected = false;
-        Log.i("ONTHEROAD_COST", String.format(LOG_CREATION, name, price));
+        Log.i("ONTHEROAD_COST", String.format(LOG_CREATION, name, price, categoryId));
     }
 
     /*----------------------------------------------------------------------------------------------
@@ -79,5 +81,13 @@ public class Cost {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }

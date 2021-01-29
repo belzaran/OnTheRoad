@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface CostDao {
 
-    @Query("SELECT * FRom Cost WHERE tripId = :tripId")
+    @Query("SELECT * FROM Cost WHERE tripId = :tripId")
     List<Cost> getCosts(long tripId);
 
     @Insert
@@ -24,4 +24,8 @@ public interface CostDao {
 
     @Query("DELETE FROM Cost WHERE id = :expenseId")
     int deleteCost(long expenseId);
+
+    @Query("SELECT * FROM Cost WHERE categoryId = :categoryId")
+    List<Cost> getCategoryCost(int categoryId);
+
 }
