@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/main_chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            style="@style/EditText"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/main_text_price"/>
+
     <TextView
     android:id="@+id/main_text_price"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="FULL PRICE"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/main_chart"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/main_text_0" />
+    app:layout_constraintBottom_toTopOf="@id/main_button" />
 
+    <!--
     <TextView
         android:id="@+id/main_text_0"
         android:layout_width="wrap_content"
@@ -115,6 +126,8 @@
         app:layout_constraintLeft_toRightOf="@id/main_text_4"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/main_text_4" />
+
+        -->
 
     <Button
         android:id="@+id/main_button"

@@ -46,7 +46,6 @@ public abstract class TripDatabase extends RoomDatabase {
             @Override
             public void onCreate(@NonNull SupportSQLiteDatabase db){
                 super.onCreate(db);
-
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("id",1);
                 contentValues.put("name", "Paris");
@@ -56,5 +55,4 @@ public abstract class TripDatabase extends RoomDatabase {
             }
         };
     }
-
 }

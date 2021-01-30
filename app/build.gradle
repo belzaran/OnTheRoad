@@ -46,13 +46,17 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation 'junit:junit:4.12'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
-// butter knife
 
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
 
     //VIEW MODEL & LIVE DATA
     implementation "android.arch.lifecycle:extensions:1.1.0"
     // TESTING
     androidTestImplementation "android.arch.core:core-testing:1.1.0"
+
+    //CHARTS
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
 }

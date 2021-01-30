@@ -39,13 +39,22 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
     private static String LOG_DATABASE = "Creating database";
     private static String LOG_TRIP = "Trip n°%s : %s";
     private static String LOG_COST = "Cost n°%s : %s - %s €";
+    private String[] Categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost);
-        createGraphics();
+
+
+        // take the value of the water consumption
+        Intent intent = getIntent();
+        if (intent != null) {
+               Categories = intent.getStringArrayExtra("Categories");
+        }
         createDatabase();
+        createGraphics();
+
         //getCost(0);
     }
 
@@ -61,11 +70,10 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
         // SPINNER
         spinner = findViewById(R.id.cost_spinner);
         List list = new ArrayList();
-        list.add("Food");
-        list.add("Transport");
-        list.add("Accommodation");
-        list.add("Gift");
-        list.add("Other");
+        for(int i =0 ; i<Categories.length; i++){
+            list.add(Categories[i]);
+        }
+
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
