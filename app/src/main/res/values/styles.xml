@@ -7,6 +7,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ActivityScrollStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/colorBlank</item>
+        <item name="android:padding">@dimen/default_padding</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
     <style name="EditText">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/size_text</item>
@@ -21,8 +29,10 @@
         <item name="android:layout_height">@dimen/button_size</item>
         <item name="android:textSize">@dimen/size_text</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlank</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_margin">@dimen/default_padding</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

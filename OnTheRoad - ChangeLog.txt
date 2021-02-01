@@ -1,0 +1,21 @@
+TO DO :
+
+* CostListActivity
+Improve graphics and details
+- icon for each category
+- date
+
+* Cost
+Add variables :
+- description
+- date
+
+
+Alpha 0.4
+Adding List of expenses
+Cleaning null Costs (0€)
+
+
+Alpha 0.3
+Clean version with PieChart to show the expenses categories
+Adding MPAndroidChart library

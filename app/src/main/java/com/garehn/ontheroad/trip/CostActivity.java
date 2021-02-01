@@ -46,16 +46,12 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost);
 
-
-        // take the value of the water consumption
         Intent intent = getIntent();
         if (intent != null) {
                Categories = intent.getStringArrayExtra("Categories");
         }
         createDatabase();
         createGraphics();
-
-        //getCost(0);
     }
 
     public void createGraphics(){

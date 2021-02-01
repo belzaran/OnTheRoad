@@ -90,4 +90,10 @@ public class Cost {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
+
+    @Override
+    public String toString(){
+        String description = name + " - " + price + "€";
+        return description;
+    }
 }

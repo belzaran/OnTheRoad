@@ -16,14 +16,13 @@ import com.garehn.ontheroad.database.TripDao;
 import com.garehn.ontheroad.database.TripDatabase;
 import com.garehn.ontheroad.trip.Cost;
 import com.garehn.ontheroad.trip.CostActivity;
+import com.garehn.ontheroad.trip.CostListActivity;
 import com.garehn.ontheroad.trip.Trip;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static String TXT_PRICE = "%s €";
 
     //GRAPHICS
-    private Button button;
+    private Button[] button = new Button[2];
     private TextView textPrice;
     //private TextView[] textPrices = new TextView[5];
     private PieChart pieChart; // x = data, y = value;
@@ -49,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TripDatabase database;
     TripDao tripDao;
     CostDao costDao;
-    private String[] Categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others"};
+    private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textPrices[4] = findViewById(R.id.main_text_4_price);
 */
 
-        button = findViewById(R.id.main_button);
-        button.setOnClickListener(this);
+        button[0] = (findViewById(R.id.main_button_add));
+        button[1] = findViewById(R.id.main_button_list);
+        for(int i =0; i < button.length; i++) {
+            button[i].setOnClickListener(this);
+        }
 
         pieChart = findViewById(R.id.main_chart);
         pieChart.setUsePercentValues(false);
@@ -95,9 +97,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void refreshChartData(){
         ArrayList<PieEntry> datas = new ArrayList<>();
         //ArrayList<Object> xData = new ArrayList<>();
-        for(int i=0;i < Categories.length;i++){
+        for(int i = 0; i < categories.length; i++){
             if(getPrice(i) != 0) {
-                datas.add(new PieEntry(getPrice(i), Categories[i])); // add values
+                datas.add(new PieEntry(getPrice(i), categories[i])); // add values
             }
         }
         PieDataSet dataSet = new PieDataSet(datas, "Expenses");
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*for(int i = 0; i < Categories.length-1; i++){
             textPrices[i].setText(String.format(TXT_PRICE, getPrice(i)));
         }*/
+        costDao.clean(0f);
         refreshChartData();
     }
 
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tripDao = database.tripDao();
         costDao = database.costDao();
         Log.i("ONTHEROAD_MAIN", String.format(LOG_DATABASE));
+
     }
 
     public void createTrip() {
@@ -201,9 +205,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == button){
+        if(v == button[0]){ // add
             Intent activity = new Intent(MainActivity.this, CostActivity.class);
-            activity.putExtra("Categories", Categories);
+            activity.putExtra("Categories", categories);
+            setResult(RESULT_OK, activity);
+            startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
+        }
+        else if(v == button[1]){ // list
+            Intent activity = new Intent(MainActivity.this, CostListActivity.class);
+            activity.putExtra("Categories", categories);
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
