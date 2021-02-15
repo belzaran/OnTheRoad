@@ -7,6 +7,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity(foreignKeys = @ForeignKey(entity = Trip.class,
         parentColumns = "id",
         childColumns = "tripId"))
@@ -22,8 +25,8 @@ public class Cost {
     private long tripId;
     private int categoryId;
     private boolean isSelected;
+    private String date;
     private static String LOG_CREATION = "Creating COST %s - %s € - type : %s";
-
 
 /*----------------------------------------------------------------------------------------------
     CONSTRUCTOR
@@ -31,13 +34,14 @@ public class Cost {
 
     public Cost(){    }
 
-    public Cost(String n, float p, long l, int cId){
+    public Cost(String n, float p, long l, int cId, String date){
         this.name = n;
         this.price = p;
         this.tripId = l;
         this.categoryId = cId;
         this.isSelected = false;
-        Log.i("ONTHEROAD_COST", String.format(LOG_CREATION, name, price, categoryId));
+        this.date = date;
+        Log.i("ONTHEROAD_COST", String.format(LOG_CREATION, name, price, categoryId, date));
     }
 
     /*----------------------------------------------------------------------------------------------
@@ -89,6 +93,14 @@ public class Cost {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     @Override

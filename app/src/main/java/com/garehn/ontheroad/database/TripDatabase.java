@@ -13,6 +13,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.garehn.ontheroad.trip.Cost;
 import com.garehn.ontheroad.trip.Trip;
 
+import java.time.LocalDate;
 import java.util.Currency;
 
 
@@ -51,6 +52,7 @@ public abstract class TripDatabase extends RoomDatabase {
                 contentValues.put("name", "Paris");
                 contentValues.put("budget", 0);
                 contentValues.put("tripId", 1);
+                contentValues.put("date", "1983-02-17");
                 db.insert("Trip", OnConflictStrategy.IGNORE, contentValues);
             }
         };

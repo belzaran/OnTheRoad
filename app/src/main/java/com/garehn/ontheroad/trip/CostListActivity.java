@@ -1,10 +1,19 @@
 package com.garehn.ontheroad.trip;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.garehn.ontheroad.R;
@@ -13,9 +22,10 @@ import com.garehn.ontheroad.database.TripDao;
 import com.garehn.ontheroad.database.TripDatabase;
 import com.garehn.ontheroad.graphics.CostCellAdapter;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
-public class CostListActivity extends AppCompatActivity {
+public class CostListActivity extends AppCompatActivity implements View.OnClickListener {
 
         private static final int GAME_ACTIVITY_REQUEST_CODE = 11;
 
@@ -24,14 +34,16 @@ public class CostListActivity extends AppCompatActivity {
         private TripDao tripDao;
         private CostDao costDao;
 
+
         //STRINGS
         private String[] categories;
 
         //GRAPHICS
-        ListView listView;
+        private ListView listView;
+        private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
+        private CostCellAdapter adapter;
 
-
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_list);
@@ -41,28 +53,28 @@ public class CostListActivity extends AppCompatActivity {
                 categories = intent.getStringArrayExtra("Categories");
             }
             createDatabase();
+            adapter=new CostCellAdapter(CostListActivity.this, getCosts(), images);
             createGraphics();
     }
 
     public void createGraphics(){
 
-            //List of categories
-            listView = findViewById(R.id.cost_list_view);
-            /*ArrayAdapter Example
-
-            ArrayList<String> costList = new ArrayList<String>();
-            for (int i = 0; i< costDao.getCosts(0).size();i++){
-                costList.add(costDao.getCosts(0).get(i).toString());
-            }
-            final ArrayAdapter<String> adapter = new ArrayAdapter<String>(CostListActivity.this,
-                    android.R.layout.simple_list_item_1, costList
-                    );
-            listView.setAdapter(adapter);*/
-
-        CostCellAdapter adapter=new CostCellAdapter(CostListActivity.this, getCosts());
+        //List of categories
+        listView = findViewById(R.id.cost_list_view);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            long i = getCosts().get(position).getId();
+            costDao.deleteCost(i);
+            adapter.setCosts(getCosts());
+            adapter.notifyDataSetChanged();
+            }
+        });
+    }
 
-
+    public void updateGraphics() {
+        listView.refreshDrawableState();
     }
 
     public void createDatabase(){
@@ -74,4 +86,39 @@ public class CostListActivity extends AppCompatActivity {
     public List<Cost> getCosts(){
             return costDao.getCosts(0);
     }
+
+    // OPEN A MESSAGE BOX
+    public void sendDeleteMessage(long l) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("WARNING")
+                .setMessage("Do you want to delete this cost ?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        costDao.deleteCost(l);
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        if(v== listView){
+
+        }
+
+
+        }
+
+
 }

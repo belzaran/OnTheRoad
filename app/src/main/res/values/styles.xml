@@ -24,6 +24,12 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="IconCell">
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
+        <item name="android:layout_margin">@dimen/default_padding</item>
+    </style>
+
     <style name="Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/button_size</item>

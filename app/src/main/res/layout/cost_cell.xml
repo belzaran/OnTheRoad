@@ -2,22 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/cost_cell_icon"
+        style="@style/IconCell"
+        app:srcCompat="@mipmap/icon_other"
+        tools:ignore="VectorDrawableCompat"
+     app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/cost_cell_name"/>
 
     <TextView
         android:id="@+id/cost_cell_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="8dp"
         android:text="Name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/cost_cell_icon"
+        app:layout_constraintBottom_toBottomOf="@id/cost_cell_icon"
+        app:layout_constraintLeft_toRightOf="@id/cost_cell_icon"/>
 
     <TextView
         android:id="@+id/cost_cell_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="16dp"
         android:text="Price"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cost_cell_name"
+        app:layout_constraintBottom_toBottomOf="@id/cost_cell_name"
+        app:layout_constraintRight_toLeftOf="@id/cost_cell_date"/>
+
+    <TextView
+        android:id="@+id/cost_cell_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        app:layout_constraintTop_toTopOf="@id/cost_cell_name"
+        app:layout_constraintBottom_toBottomOf="@id/cost_cell_name"
         app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

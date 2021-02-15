@@ -1,15 +1,18 @@
 package com.garehn.ontheroad.trip;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -18,7 +21,11 @@ import com.garehn.ontheroad.database.CostDao;
 import com.garehn.ontheroad.database.TripDao;
 import com.garehn.ontheroad.database.TripDatabase;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class CostActivity extends AppCompatActivity implements View.OnClickListener{
@@ -29,17 +36,22 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
     private EditText[] editText = new EditText[3];
     private Button button;
     private Spinner spinner;
+    private DatePicker datePicker;
 
     // DATABASE
     private TripDatabase database;
     private TripDao tripDao;
     private CostDao costDao;
 
-    //STRINGS
+    // STRINGS
     private static String LOG_DATABASE = "Creating database";
     private static String LOG_TRIP = "Trip n°%s : %s";
     private static String LOG_COST = "Cost n°%s : %s - %s €";
     private String[] Categories;
+    String formatDate;
+
+    // OTHERS
+    LocalDate date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +86,11 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        // DATE
+        datePicker = findViewById(R.id.cost_date_picker);
+        datePicker.getYear();
+        datePicker.getMonth();
+        datePicker.getDayOfMonth();
     }
 
     public void createDatabase(){
@@ -81,6 +98,11 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
         this.tripDao = database.tripDao();
         this.costDao = database.costDao();
         Log.i("ONTHEROAD_COST", String.format(LOG_DATABASE));
+    }
+
+    public String getFormatDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return date.format(formatter);
     }
 
     public void getTrip(){
@@ -101,10 +123,11 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
             float price = Float.valueOf(editText[1].getText().toString());
             long tripId = Long.valueOf(editText[2].getText().toString());
             int categoryId = (int) spinner.getSelectedItemId();
-            Cost cost = new Cost(name, price, tripId, categoryId);
+            date = LocalDate.of(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+            String formattedDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            Cost cost = new Cost(name, price, tripId, categoryId, formattedDate);
             costDao.insertCost(cost);
             finish();
-
         }
     }
 }

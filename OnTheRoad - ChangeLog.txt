@@ -1,15 +1,21 @@
 TO DO :
 
-* CostListActivity
-Improve graphics and details
-- icon for each category
+
 - date
 
 * Cost
 Add variables :
-- description
 - date
 
+* Activities
+- modify costs
+
+Alpha 0.5
+Adding dates on costs
+* CostListActivity
+Improving graphics and details
+- Adding icons for each category
+- Adding possibilities to delete costs
 
 Alpha 0.4
 Adding List of expenses
