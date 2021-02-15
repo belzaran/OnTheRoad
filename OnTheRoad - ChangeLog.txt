@@ -1,7 +1,15 @@
 TO DO :
-Modify cost
 Manage budget max and remaining budget
 Filter to CostListActivity
+
+Alpha 0.6
+OPTIMISATION
+Creation abstract class for activities
+BUGS
+Fixing bugs in cost adding form
+Fixing scroll view in CostListActivity
+USER EXPERIENCE
+Adding possibilities to modify a cost
 
 Alpha 0.5.1
 BUGS

@@ -79,6 +79,10 @@ public class CostCellAdapter extends BaseAdapter {
         this.costs = costs;
     }
 
+    public List<Cost> getCosts() {
+        return costs;
+    }
+
     private Context getContext() {
             return this.context;
     }

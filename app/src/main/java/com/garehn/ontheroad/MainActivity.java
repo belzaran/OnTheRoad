@@ -198,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     price += costs.get(i).getPrice();
                 }
             }
-
             return price;
         }
 

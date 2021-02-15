@@ -2,13 +2,9 @@ package com.garehn.ontheroad.trip;
 
 import android.util.Log;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 @Entity(foreignKeys = @ForeignKey(entity = Trip.class,
         parentColumns = "id",
