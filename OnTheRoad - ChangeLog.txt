@@ -1,14 +1,13 @@
 TO DO :
+Modify cost
+Manage budget max and remaining budget
+Filter to CostListActivity
 
+Alpha 0.5.1
+BUGS
+- fixing bug with months
+Adding DialogBox to decide to delete cost or not
 
-- date
-
-* Cost
-Add variables :
-- date
-
-* Activities
-- modify costs
 
 Alpha 0.5
 Adding dates on costs
@@ -20,7 +19,6 @@ Improving graphics and details
 Alpha 0.4
 Adding List of expenses
 Cleaning null Costs (0€)
-
 
 Alpha 0.3
 Clean version with PieChart to show the expenses categories

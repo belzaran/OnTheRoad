@@ -65,16 +65,13 @@ public class CostListActivity extends AppCompatActivity implements View.OnClickL
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            long i = getCosts().get(position).getId();
+                sendDeleteMessage(getCosts().get(position).getId(), position);
+            /*long i = getCosts().get(position).getId();
             costDao.deleteCost(i);
             adapter.setCosts(getCosts());
-            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();*/
             }
         });
-    }
-
-    public void updateGraphics() {
-        listView.refreshDrawableState();
     }
 
     public void createDatabase(){
@@ -88,22 +85,24 @@ public class CostListActivity extends AppCompatActivity implements View.OnClickL
     }
 
     // OPEN A MESSAGE BOX
-    public void sendDeleteMessage(long l) {
+    public void sendDeleteMessage(long l,int position) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("WARNING")
-                .setMessage("Do you want to delete this cost ?")
-                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        costDao.deleteCost(l);
-                    }
-                })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setTitle(getCosts().get(position).getName())
+                .setMessage("What do you want to do with this expense ?")
+                .setPositiveButton("NOTHING", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
+                    }
+                })
+                .setNegativeButton("DELETE", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        costDao.deleteCost(l);
+                        adapter.setCosts(getCosts());
+                        adapter.notifyDataSetChanged();
                     }
                 })
                 .create()
@@ -112,11 +111,6 @@ public class CostListActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-
-        if(v== listView){
-
-        }
-
 
         }
 

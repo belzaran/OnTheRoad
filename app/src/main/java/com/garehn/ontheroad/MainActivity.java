@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pieChart.setUsePercentValues(false);
         // enable hole and configure
         pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleRadius(64);
+        pieChart.setHoleRadius(32);
         pieChart.setTransparentCircleRadius(10);
         Description desc = new Description();
         desc.setText("Expenses by categories");

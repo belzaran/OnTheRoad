@@ -71,7 +71,7 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
         editText[1] = findViewById(R.id.cost_editText1);
         editText[2] = findViewById(R.id.cost_editText2);
 
-        //BUTTON
+        // BUTTON
         button = findViewById(R.id.cost_button_add);
         button.setOnClickListener(this);
 
@@ -123,7 +123,7 @@ public class CostActivity extends AppCompatActivity implements View.OnClickListe
             float price = Float.valueOf(editText[1].getText().toString());
             long tripId = Long.valueOf(editText[2].getText().toString());
             int categoryId = (int) spinner.getSelectedItemId();
-            date = LocalDate.of(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+            date = LocalDate.of(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth());
             String formattedDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
             Cost cost = new Cost(name, price, tripId, categoryId, formattedDate);
             costDao.insertCost(cost);
