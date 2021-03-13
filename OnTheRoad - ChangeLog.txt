@@ -1,6 +1,20 @@
-TO DO :
+ROAD MAP
 Manage budget max and remaining budget
+-> change color if budget is reach
+-> adding graduation per day on ProgresBar
 Filter to CostListActivity
+Adding chart with cost by day
+
+Alpha 0.7
+OPTIMISATION
+-Fixing strings for better code
+-Using Calendar instead of LocalDate for Android 24 users
+BUGS
+-Fixing crash when database is empty
+USER EXPERIENCE
+-User can modify the trip
+-Manage budget max and remaining budget
+-Manage cost by day
 
 Alpha 0.6
 OPTIMISATION
@@ -15,7 +29,6 @@ Alpha 0.5.1
 BUGS
 - fixing bug with months
 Adding DialogBox to decide to delete cost or not
-
 
 Alpha 0.5
 Adding dates on costs

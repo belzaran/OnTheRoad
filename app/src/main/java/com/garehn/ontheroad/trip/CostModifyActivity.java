@@ -2,6 +2,7 @@ package com.garehn.ontheroad.trip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,19 +14,22 @@ import android.widget.Spinner;
 import com.garehn.ontheroad.R;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class CostModifyActivity extends CostBaseActivity implements View.OnClickListener {
 
     private static final int GAME_ACTIVITY_REQUEST_CODE = 12;
 
     int costId;
-    Cost cost;
-    LocalDate date;
 
     // GRAPHICS
     protected EditText[] editText = new EditText[3];
@@ -42,11 +46,15 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         setContentView(R.layout.activity_cost_modify);
         createCategories();
         createDatabase();
-        createGraphics();
+        try {
+            createGraphics();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void createGraphics() {
+    public void createGraphics() throws ParseException {
 
         // EDIT TEXT
         editText[0] = findViewById(R.id.cost_modify_editText0);
@@ -78,11 +86,14 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
 
         // DATE
         datePicker = findViewById(R.id.cost_modify_date_picker);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         String dateString = costDao.getCosts(0).get((int) costId).getDate();
-        date = LocalDate.parse(dateString, formatter);
-        datePicker.updateDate(date.getYear(), date.getMonthValue() - 1 , date.getDayOfMonth());
+       // Date date = calendar.getTime();
+        Date date = formatter.parse(dateString);
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        calendar.setTime(date);
+        //date.parse(dateString, formatter);
+        datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
     }
 
 
@@ -108,8 +119,12 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
             float price = Float.valueOf(editText[1].getText().toString());
             long tripId = Long.valueOf(editText[2].getText().toString());
             int categoryId = (int) spinner.getSelectedItemId();
-            date = LocalDate.of(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
-            String formattedDate = date.format(DateTimeFormatter.ofPattern(dateFormat));
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+            //date = date.of(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth()); for Android 26
+            SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+            Date date = calendar.getTime();
+            String formattedDate = formatter.format(date);
             Cost cost = costDao.getCosts(0).get(costId);
             cost.setName(name);
             cost.setPrice(price);

@@ -48,10 +48,10 @@ public abstract class TripDatabase extends RoomDatabase {
             public void onCreate(@NonNull SupportSQLiteDatabase db){
                 super.onCreate(db);
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("id",1);
-                contentValues.put("name", "Paris");
+                contentValues.put("id",0);
+                contentValues.put("name", "");
                 contentValues.put("budget", 0);
-                contentValues.put("tripId", 1);
+                contentValues.put("tripId", 0);
                 contentValues.put("date", "1983-02-17");
                 db.insert("Trip", OnConflictStrategy.IGNORE, contentValues);
             }

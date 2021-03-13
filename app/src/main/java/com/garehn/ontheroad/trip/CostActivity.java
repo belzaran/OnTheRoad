@@ -11,10 +11,15 @@ import android.widget.Spinner;
 
 import com.garehn.ontheroad.R;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
+import java.util.TimeZone;
 
 public class CostActivity extends CostBaseActivity implements View.OnClickListener{
 
@@ -30,9 +35,6 @@ public class CostActivity extends CostBaseActivity implements View.OnClickListen
     protected static String LOG_DATABASE = "Creating database";
     protected static String LOG_TRIP = "Trip n°%s : %s";
     protected static String LOG_COST = "Cost n°%s : %s - %s €";
-
-    // OTHERS
-    LocalDate date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,12 @@ public class CostActivity extends CostBaseActivity implements View.OnClickListen
             float price = Float.valueOf(editText[1].getText().toString());
             long tripId = Long.valueOf(editText[2].getText().toString());
             int categoryId = (int) spinner.getSelectedItemId();
-            date = LocalDate.of(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth());
-            String formattedDate = date.format(DateTimeFormatter.ofPattern(dateFormat));
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+            //date = date.of(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth()); for Android 26
+            SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+            Date date = calendar.getTime();
+            String formattedDate = formatter.format(date);
             Cost cost = new Cost(name, price, tripId, categoryId, formattedDate);
             costDao.insertCost(cost);
             finish();

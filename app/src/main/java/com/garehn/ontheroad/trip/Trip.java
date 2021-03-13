@@ -76,5 +76,16 @@ public class Trip {
         this.duration = duration;
     }
 
+    public float getCostByDay(){
+        float f;
+        if (duration == 0){
+            f = 0;
+        }
+        else{
+            f = budget/duration;
+        }
+        return f;
+    }
+
 
 }

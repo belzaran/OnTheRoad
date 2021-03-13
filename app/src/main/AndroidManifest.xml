@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnTheRoad">
-        <activity android:name=".trip.CostBaseActivity"></activity>
+        <activity android:name=".trip.TripModifyActivity"></activity>
+        <activity android:name=".trip.CostBaseActivity" />
         <activity android:name=".trip.CostModifyActivity" />
         <activity android:name=".trip.CostListActivity" />
         <activity android:name=".trip.CostActivity" />

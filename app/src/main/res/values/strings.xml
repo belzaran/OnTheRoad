@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">On the Road</string>
+
+    <!-- Variables -->
     <string name="expenses">Expenses</string>
+    <string name="trip">Trip</string>
+    <string name="cost">Expense</string>
+    <string name="costs">Expenses</string>
+    <string name="name">Name</string>
+    <string name="price">Price (in €)</string>
+    <string name="category">Category</string>
+    <string name="budget">Budget (in €)</string>
+    <string name="duration">Duration (in days)</string>
+
+    <!-- Buttons -->
+    <string name="add">Add</string>
+    <string name="modify">Modify</string>
+    <string name="listCost">EXPENSES</string>
+    <string name="addCost">ADD EXPENSE</string>
+
 </resources>

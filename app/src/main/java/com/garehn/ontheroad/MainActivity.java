@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.garehn.ontheroad.database.CostDao;
@@ -18,6 +19,7 @@ import com.garehn.ontheroad.trip.Cost;
 import com.garehn.ontheroad.trip.CostActivity;
 import com.garehn.ontheroad.trip.CostListActivity;
 import com.garehn.ontheroad.trip.Trip;
+import com.garehn.ontheroad.trip.TripModifyActivity;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
@@ -25,23 +27,44 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.FileNotFoundException;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    /*----------------------------------------------------------------------------------------------
+    VARIABLES
+    ----------------------------------------------------------------------------------------------*/
 
     private static final int GAME_ACTIVITY_REQUEST_CODE = 0;
 
     //STRINGS
     private static String LOG_DATABASE = "Creating database";
+    private static String LOG_GRAPHICS = "Creating graphics";
+    private static String LOG_DAY = "Number of days : %s";
     private static String LOG_TRIP = "Creating trip %s";
     private static String LOG_COST = "Cost n°%s : %s - %s €";
     private static String TXT_PRICE = "%s €";
+    private static String TXT_PROGRESSBAR = "%s € / %s €";
+    private static String TXT_PROGRESSBAR1 = "%s € / %s € / day";
+    protected final String dateFormat = "dd MMM yyyy";
 
     //GRAPHICS
-    private Button[] button = new Button[2];
-    private TextView textPrice;
-    //private TextView[] textPrices = new TextView[5];
+    private Button[] button = new Button[3];
+    private ProgressBar budgetBar;
+    private ProgressBar budgetDayBar;
+    private TextView textBar;
+    private TextView textDayBar;
+    private TextView textTitle;
     private PieChart pieChart; // x = data, y = value;
 
     //DATABASE
@@ -50,34 +73,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CostDao costDao;
     private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others"};
 
+
+    /*----------------------------------------------------------------------------------------------
+    INITIALISATION
+    ----------------------------------------------------------------------------------------------*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         createDatabase();
         createGraphics();
-        createTrip();
-        updateGraphics();
+        checkDatabase(0);
+        try {
+            updateGraphics();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onResume() {
         super.onResume();
-        updateGraphics();
+        try {
+            updateGraphics();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createDatabase(){
+        Log.i("ONTHEROAD_MAIN", String.format(LOG_DATABASE));
+        database = Room.databaseBuilder(this, TripDatabase.class,"db").allowMainThreadQueries().build();
+        //database.getInstance(this);
+        tripDao = database.tripDao();
+        costDao = database.costDao();
     }
 
     public void createGraphics(){
-        textPrice= findViewById(R.id.main_text_price);
-/*
-        textPrices[0] = findViewById(R.id.main_text_0_price);
-        textPrices[1] = findViewById(R.id.main_text_1_price);
-        textPrices[2] = findViewById(R.id.main_text_2_price);
-        textPrices[3] = findViewById(R.id.main_text_3_price);
-        textPrices[4] = findViewById(R.id.main_text_4_price);
-*/
+        Log.i("ONTHEROAD_MAIN", String.format(LOG_GRAPHICS));
+
+        textBar = findViewById(R.id.main_bar_text);
+        textDayBar = findViewById(R.id.main_bar_text1);
+        textTitle = findViewById(R.id.main_title);
+
+        budgetBar = findViewById(R.id.main_bar);
+        budgetBar.setScaleY(5f);
+        budgetDayBar = findViewById(R.id.main_bar1);
+        budgetDayBar.setScaleY(5f);
 
         button[0] = (findViewById(R.id.main_button_add));
         button[1] = findViewById(R.id.main_button_list);
-        for(int i =0; i < button.length; i++) {
+        button[2] = findViewById(R.id.main_button_modify);
+        for(int i = 0; i < button.length; i++) {
             button[i].setOnClickListener(this);
         }
 
@@ -87,12 +134,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleRadius(32);
         pieChart.setTransparentCircleRadius(10);
-        Description desc = new Description();
-        desc.setText("Expenses by categories");
+        //Description desc = new Description();
+        //desc.setText("Expenses by categories");
+        //pieChart.setDescription(desc);
         pieChart.setRotationEnabled(false);
-        pieChart.setDescription(desc);
+        pieChart.getDescription().setEnabled(false);
+
         refreshChartData();
     }
+
+    public void checkDatabase(long id){
+        if(tripDao.getTrip(id)!= null){
+
+        }
+        else{
+            createBasicTrip();
+        }
+    }
+
+    public void createTrip() {
+        Trip trip = new Trip();
+        trip.setName("Paris");
+        trip.setBudget(500);
+        trip.setDuration(7);
+        tripDao.createTrip(trip);
+        tripDao.updateTrip(trip);
+        Log.i("ONTHEROAD_MAIN", String.format(LOG_TRIP, trip.getName()));
+    }
+
+    public void createBasicTrip() {
+        Trip trip = new Trip();
+        trip.setName("");
+        trip.setBudget(0);
+        trip.setDuration(0);
+        tripDao.createTrip(trip);
+        tripDao.updateTrip(trip);
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    REFRESHING DATAS & GRAPHICS
+    ----------------------------------------------------------------------------------------------*/
 
     public void refreshChartData(){
         ArrayList<PieEntry> datas = new ArrayList<>();
@@ -135,40 +216,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pieChart.invalidate(); //refresh
     }
 
-    public void updateGraphics(){
-        float f = getFullPrice();
-        textPrice.setText(f + " €");
-        /*for(int i = 0; i < Categories.length-1; i++){
-            textPrices[i].setText(String.format(TXT_PRICE, getPrice(i)));
-        }*/
+    public void updateGraphics() throws ParseException {
+        float f = getFullPrice(0);
         costDao.clean(0f);
+        refreshTitle();
         refreshChartData();
+        refreshProgressBar();
     }
 
-    public void createDatabase(){
-        database = Room.databaseBuilder(this, TripDatabase.class,"db").allowMainThreadQueries().build();
-        tripDao = database.tripDao();
-        costDao = database.costDao();
-        Log.i("ONTHEROAD_MAIN", String.format(LOG_DATABASE));
+    public void refreshProgressBar() throws ParseException {
+        budgetBar.setMax(getBudget(0));
+        budgetBar.setProgress((int) getFullPrice(0));
+        textBar.setText(String.format(TXT_PROGRESSBAR, getFullPrice(0),getBudget(0)));
 
-    }
+        budgetDayBar.setMax(Integer.valueOf((int) (getBudget(0) * 100 / getDuration(0)))); // round the cost with 2 decimals
 
-    public void createTrip() {
-        Trip trip = new Trip();
-        trip.setName("Paris");
-        trip.setBudget(500);
-        trip.setDuration(7);
-        tripDao.createTrip(trip);
-        Log.i("ONTHEROAD_MAIN", String.format(LOG_TRIP, trip.getName()));
-    }
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        formatter.setRoundingMode(RoundingMode.DOWN);
+        String costByDay = formatter.format(getFullPrice(0) / getDays(0));
+        String fullCostByDay = formatter.format(getBudget(0) / getDuration(0));
 
-    public void getCost(){
-        int max  = costDao.getCosts(0).size();
-        Cost cost;
-        for (int i=0;i< max;i++){
-            cost = costDao.getCosts(0).get(i);
-            Log.i("ONTHEROAD_MAIN", String.format(LOG_COST, cost.getId(),cost.getName(), cost.getPrice()));
+        if(getDays(0) != 0) {
+            budgetDayBar.setProgress(Integer.valueOf((int) (getFullPrice(0) * 100 / getDays(0))));
+            textDayBar.setText(String.format(TXT_PROGRESSBAR1, costByDay, fullCostByDay));
+
         }
+        else{
+            textDayBar.setText(String.format(TXT_PROGRESSBAR1, 0, fullCostByDay));
+        }
+
+    }
+
+    public void refreshTitle(){
+        textTitle.setText(getName(0));
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    GETTERS
+    ----------------------------------------------------------------------------------------------*/
+
+    public int getBudget(int id){
+        int budget = 0;
+        if(tripDao.getTrip(id) != null) {
+            budget = tripDao.getTrip(id).getBudget();
+        }
+        return budget;
+    }
+
+    public int getDuration(int id){
+        int duration = 0;
+        if(tripDao.getTrip(id) != null) {
+            duration = tripDao.getTrip(id).getDuration();
+        }
+        return duration;
+    }
+
+    public float getCostByDay(int id){
+        float budget = 0;
+        if(tripDao.getTrip(id) != null) {
+            budget = tripDao.getTrip(id).getCostByDay();
+        }
+        return budget;
+    }
+
+    public String getName(long id){
+        String name = "";
+        if(tripDao.getTrip(id) != null){
+            name = tripDao.getTrip(id).getName();
+        }
+        return name;
+    }
+
+    public void getCost(long id){
+        if(costDao.getCosts(id) != null){
+            int max  = costDao.getCosts(id).size();
+            Cost cost;
+            for (int i=0;i< max;i++){
+                cost = costDao.getCosts(id).get(i);
+                Log.i("ONTHEROAD_MAIN", String.format(LOG_COST, cost.getId(),cost.getName(), cost.getPrice()));
+            }
+        }
+
     }
 
     /*public void getTrip() throws InterruptedException {
@@ -177,12 +305,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.i("ONTHEROAD_MAIN", String.format(LOG_TRIP, name));
     }*/
 
-    public float getFullPrice(){
+    public float getFullPrice(long id){
         float price = 0;
-        int max  = costDao.getCosts(0).size();
+        int max  = costDao.getCosts(id).size();
         Cost cost;
         for (int i=0;i< max;i++){
-            cost = costDao.getCosts(0).get(i);
+            cost = costDao.getCosts(id).get(i);
             Log.i("ONTHEROAD_MAIN", String.format(LOG_COST, cost.getId(),cost.getName(), cost.getPrice(), cost.getCategoryId()));
             price += cost.getPrice();
         }
@@ -198,9 +326,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     price += costs.get(i).getPrice();
                 }
             }
-            return price;
-        }
+        return price;
+    }
 
+    public int getDays(int id) throws ParseException {
+        int day = 0;
+        if(tripDao.getTrip(id) != null) {
+            List<Cost> costs = costDao.getCosts(id);
+            Date[] dates = new Date[costs.size()];
+            Calendar[] calendars = new Calendar[costs.size()];
+            SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+            long min = 0;
+            long max = 0;
+
+            for(int i = 0; i < costs.size(); i++){
+                dates[i] = formatter.parse(costs.get(i).getDate());
+                calendars[i] = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                calendars[i].setTime(dates[i]);
+                if(i == 0){ // initialisation
+                    min = calendars[i].getTimeInMillis();
+                    max = calendars[i].getTimeInMillis();
+                }
+                else{ // let's check for min and max dates
+                    if(calendars[i].getTimeInMillis() < min){
+                        min = calendars[i].getTimeInMillis();
+                                            }
+                    else if(calendars[i].getTimeInMillis() > max){
+
+                        max = calendars[i].getTimeInMillis();
+                    }
+                }
+            }
+            day = (int) ((max-min) / 86400000);
+        }
+        Log.i("ONTHEROAD_MAIN", String.format(LOG_DAY, day));
+        return day;
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    METHODS
+    ----------------------------------------------------------------------------------------------*/
 
     @Override
     public void onClick(View v) {
@@ -212,6 +378,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if(v == button[1]){ // list
             Intent activity = new Intent(MainActivity.this, CostListActivity.class);
+            activity.putExtra("Categories", categories);
+            setResult(RESULT_OK, activity);
+            startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
+        }
+        else if(v == button[2]){ // modify
+            Intent activity = new Intent(MainActivity.this, TripModifyActivity.class);
             activity.putExtra("Categories", categories);
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);

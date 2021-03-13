@@ -26,7 +26,6 @@
         app:layout_constraintBottom_toTopOf="@id/cost_list_button"
     />
 
-
     <Button
         android:id="@+id/cost_list_button"
         android:layout_width="match_parent"

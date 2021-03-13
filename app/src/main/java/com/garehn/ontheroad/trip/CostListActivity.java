@@ -19,6 +19,10 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
         private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
         private CostCellAdapter adapter;
 
+        //STRINGS
+    private static String TXT_DIALOG = "What do you want to do with this expense ?";
+    private static String TXT_DIALOG_MODIFY = "modify";
+    private static String TXT_DIALOG_DELETE = "delete";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +62,8 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle(getCosts().get(position).getName())
-                .setMessage("What do you want to do with this expense ?")
-                .setPositiveButton("MODIFY", new DialogInterface.OnClickListener() {
+                .setMessage(TXT_DIALOG)
+                .setPositiveButton(TXT_DIALOG_MODIFY, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -73,7 +77,7 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
                         finish();
                     }
                 })
-                .setNegativeButton("DELETE", new DialogInterface.OnClickListener() {
+                .setNegativeButton(TXT_DIALOG_DELETE, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         costDao.deleteCost(l);

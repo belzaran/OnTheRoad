@@ -7,15 +7,22 @@
     tools:context=".trip.CostActivity">
 
     <TextView
+        android:id="@+id/cost_modify_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Title"
+        android:text="@string/cost"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
         android:id="@+id/cost_modify_text0"
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.4"
         android:layout_height="wrap_content"
-        android:text="name"
-
+        android:text="@string/name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/cost_modify_editText0"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cost_modify_title"
         app:layout_constraintBottom_toTopOf="@id/cost_modify_text1"
         />
 
@@ -34,8 +41,7 @@
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.4"
         android:layout_height="wrap_content"
-        android:text="price (in €)"
-
+        android:text="@string/price"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/cost_modify_editText1"
         app:layout_constraintTop_toBottomOf="@id/cost_modify_text0"
@@ -57,7 +63,7 @@
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.4"
         android:layout_height="wrap_content"
-        android:text="Trip"
+        android:text="@string/trip"
         app:layout_constraintTop_toBottomOf="@+id/cost_modify_text1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/cost_modify_editText2"
@@ -80,7 +86,7 @@
         android:layout_width="0dp"
         app:layout_constraintWidth_percent="0.4"
         android:layout_height="wrap_content"
-        android:text="Category"
+        android:text="@string/category"
         app:layout_constraintTop_toBottomOf="@+id/cost_modify_text2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/cost_modify_spinner"
@@ -109,7 +115,7 @@
     <Button
         android:id="@+id/cost_modify_button_add"
         style="@style/Button"
-        android:text="MODIFY COST"
+        android:text="@string/modify"
         app:layout_constraintTop_toBottomOf="@id/cost_modify_date_picker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
