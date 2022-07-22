@@ -67,10 +67,7 @@ public class Cost {
     public void setId(long id) {
         this.id = id;
     }
-    public long getTripId() {
-        return tripId;
-    }
-
+    public long getTripId() {        return tripId;    }
     public void setTripId(long tripId) {
         this.tripId = tripId;
     }

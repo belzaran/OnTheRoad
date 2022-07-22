@@ -3,18 +3,16 @@ package com.garehn.ontheroad.trip;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Currency;
-
 @Entity
 public class Trip {
 
     /*----------------------------------------------------------------------------------------------
     VARIABLES
     ----------------------------------------------------------------------------------------------*/
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
-    private int budget;
+    private float budget;
     private boolean isSelected;
     private int duration;
 
@@ -23,6 +21,13 @@ public class Trip {
     ----------------------------------------------------------------------------------------------*/
 
     public Trip(){}
+
+    public Trip( String n, int b, int d){
+        name = n;
+        budget = b;
+        duration = d;
+        isSelected = false;
+    }
 
     public Trip(long i, String n, int b, int d){
         id = i;
@@ -44,11 +49,11 @@ public class Trip {
         this.name = name;
     }
 
-    public int getBudget() {
+    public float getBudget() {
         return budget;
     }
 
-    public void setBudget(int budget) {
+    public void setBudget(float budget) {
         this.budget = budget;
     }
 

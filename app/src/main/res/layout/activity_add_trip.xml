@@ -4,104 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTripActivity">
+    tools:context=".trip.TripAddActivity">
 
     <TextView
-        android:id="@+id/travel_text0"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
+        android:id="@+id/trip_add_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="name"
-        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Title"
+        android:text="@string/trip"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/trip_add_icon"
+        style="@style/IconBig"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/travel_editText0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/travel_text1"
-        />
-
-    <EditText
-        android:id="@+id/travel_editText0"
-        style="@style/EditText"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/travel_text0"
-        app:layout_constraintLeft_toRightOf="@id/travel_text0"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/travel_text0"
-        />
+        app:layout_constraintTop_toBottomOf="@id/trip_add_title"></ImageView>
 
-    <TextView
-        android:id="@+id/travel_text1"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="description"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/trip_add_linear0"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintTop_toBottomOf="@id/trip_add_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/name"
+            />
+
+        <EditText
+            android:id="@+id/trip_add_editText0"
+            style="@style/EditText"
+            android:text=""
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/trip_add_linear1"
+        style="@style/LinearVerticalLayout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/travel_editText1"
-        app:layout_constraintTop_toBottomOf="@id/travel_text0"
-        app:layout_constraintBottom_toTopOf="@id/travel_text2"/>
-
-    <EditText
-        android:id="@+id/travel_editText1"
-        style="@style/EditText"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/travel_text1"
-        app:layout_constraintLeft_toRightOf="@id/travel_text1"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/travel_text1"
-        />
+        app:layout_constraintTop_toBottomOf="@id/trip_add_linear0">
 
-    <TextView
-        android:id="@+id/travel_text2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="duration (in days)"
-        app:layout_constraintTop_toBottomOf="@+id/travel_text1"
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/budget"
+            />
+
+        <EditText
+            android:id="@+id/trip_add_editText1"
+            style="@style/EditText"
+            android:inputType="number"
+            android:text="0"
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/trip_add_linear2"
+        style="@style/LinearVerticalLayout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/travel_editText2"
-        app:layout_constraintBottom_toTopOf="@id/travel_text3"
-        />
-
-    <EditText
-        android:id="@+id/travel_editText2"
-        style="@style/EditText"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/travel_text2"
-        app:layout_constraintLeft_toRightOf="@id/travel_text2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/travel_text2"
-        />
+        app:layout_constraintTop_toBottomOf="@id/trip_add_linear1">
 
-    <TextView
-        android:id="@+id/travel_text3"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="budget (in €)"
-        app:layout_constraintTop_toBottomOf="@+id/travel_text2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/travel_editText3"
-        app:layout_constraintBottom_toTopOf="@id/travel_button_add"
-        />
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/duration" />
 
-    <EditText
-        android:id="@+id/travel_editText3"
-        style="@style/EditText"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/travel_text3"
-        app:layout_constraintLeft_toRightOf="@id/travel_text3"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/travel_text3"
-        />
+        <EditText
+            android:id="@+id/trip_add_editText2"
+            style="@style/EditText"
+            android:inputType="number"
+            android:text="0"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <Button
-        android:id="@+id/travel_button_add"
+        android:id="@+id/trip_add_button"
         style="@style/Button"
-        android:text="VALIDATE"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

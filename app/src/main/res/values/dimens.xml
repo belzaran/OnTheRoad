@@ -9,7 +9,9 @@
         <dimen name="default_padding">12sp</dimen>
         <dimen name="small_padding">2sp</dimen>
         <dimen name="icon_size">16sp</dimen>
+        <dimen name="icon_middle_size">32sp</dimen>
+        <dimen name="icon_big_size">64sp</dimen>
         <dimen name="icon_main_size">256sp</dimen>
         <dimen name="wave_size">48sp</dimen>
-        <dimen name="button_size">48sp</dimen>
+        <dimen name="button_size">36sp</dimen>
     </resources>

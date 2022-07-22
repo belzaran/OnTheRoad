@@ -18,6 +18,7 @@ import java.util.Currency;
 
 
 @Database(entities = {Cost.class, Trip.class}, version = 1, exportSchema = false)
+
 public abstract class TripDatabase extends RoomDatabase {
 
     //    SINGLETON

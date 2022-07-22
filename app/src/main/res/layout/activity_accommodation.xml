@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".trip.AccommodationActivity">
+
+    <TextView
+        android:id="@+id/accommodation_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Title"
+        android:text="@string/accommodation"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        style="@style/IconMiddle"
+        android:id="@+id/accommodation_icon"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_title"
+        app:layout_constraintBottom_toTopOf="@id/accommodation_linear0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/accommodation_linear0"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/name"
+            />
+
+        <EditText
+            android:id="@+id/accommodation_editText0"
+            style="@style/EditText"
+            android:text=""
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/accommodation_linear1"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_linear0"
+        app:layout_constraintBottom_toTopOf="@id/accommodation_linear2">
+
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/price"
+            />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/accommodation_editText1"
+                style="@style/EditText"
+                android:layout_width="@dimen/icon_main_size"
+                android:inputType="number"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" . "></TextView>
+
+            <EditText
+                android:id="@+id/accommodation_editText2"
+                style="@style/EditText"
+                android:inputType="number"
+                android:layout_weight="5"
+                />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" € "></TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/accommodation_linear2"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintBottom_toTopOf="@id/accommodation_date_picker"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_linear1">
+
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/nights" />
+
+        <EditText
+            android:id="@+id/accommodation_editText3"
+            style="@style/EditText"
+            android:inputType="number"
+            android:text="" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <DatePicker
+        android:id="@+id/accommodation_date_picker"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/accommodation_linear2"
+        app:layout_constraintBottom_toTopOf="@id/accommodation_button_add"
+        ></DatePicker>
+
+    <Button
+        android:id="@+id/accommodation_button_add"
+        style="@style/Button"
+        android:text="@string/add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

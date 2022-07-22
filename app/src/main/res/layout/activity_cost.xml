@@ -14,93 +14,84 @@
         android:text="@string/cost"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/cost_text0"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/cost_editText0"
+    <ImageView
+        style="@style/IconMiddle"
+        android:id="@+id/cost_icon"
         app:layout_constraintTop_toBottomOf="@id/cost_title"
-        app:layout_constraintBottom_toTopOf="@id/cost_text1"
-        />
-
-    <EditText
-        android:id="@+id/cost_editText0"
-        style="@style/EditText"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@id/cost_text0"
-        app:layout_constraintLeft_toRightOf="@id/cost_text0"
+        app:layout_constraintBottom_toTopOf="@id/cost_linear0"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cost_text0"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/cost_linear0"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintTop_toBottomOf="@id/cost_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TextView
+        style="@style/SimpleText"
+        android:text="@string/name"
         />
 
-    <TextView
-        android:id="@+id/cost_text1"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="@string/price"
+        <EditText
+            android:id="@+id/cost_editText0"
+            style="@style/EditText"
+            android:text=""
+            />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/cost_linear1"
+        style="@style/LinearVerticalLayout"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/cost_editText1"
-        app:layout_constraintTop_toBottomOf="@id/cost_text0"
-        app:layout_constraintBottom_toTopOf="@id/cost_text2"/>
+        app:layout_constraintTop_toBottomOf="@id/cost_linear0"
+        app:layout_constraintBottom_toTopOf="@id/cost_date_picker">
 
-    <EditText
-        android:id="@+id/cost_editText1"
-        style="@style/EditText"
-        android:inputType="number"
-        android:text="0"
-        app:layout_constraintBottom_toBottomOf="@id/cost_text1"
-        app:layout_constraintLeft_toRightOf="@id/cost_text1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cost_text1"
-        />
+        <TextView
+            style="@style/SimpleText"
+            android:text="@string/price"
+            />
 
-    <TextView
-        android:id="@+id/cost_text2"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="@string/trip"
-        app:layout_constraintTop_toBottomOf="@+id/cost_text1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/cost_editText2"
-        app:layout_constraintBottom_toTopOf="@id/cost_text3"
-        />
 
-    <EditText
-        android:id="@+id/cost_editText2"
-        style="@style/EditText"
-        android:text="0"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@id/cost_text2"
-        app:layout_constraintLeft_toRightOf="@id/cost_text2"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cost_text2"
-        />
 
-    <TextView
-        android:id="@+id/cost_text3"
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.4"
-        android:layout_height="wrap_content"
-        android:text="@string/category"
-        app:layout_constraintTop_toBottomOf="@+id/cost_text2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/cost_spinner"
-        app:layout_constraintBottom_toTopOf="@id/cost_date_picker"
-        />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/cost_spinner"
-        style="@style/EditText"
-        app:layout_constraintBottom_toBottomOf="@id/cost_text3"
-        app:layout_constraintLeft_toRightOf="@id/cost_text3"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cost_text3"
-        />
+            <EditText
+                android:id="@+id/cost_editText1"
+                style="@style/EditText"
+                android:layout_width="@dimen/icon_main_size"
+                android:inputType="number"
+                android:layout_weight="1"
+                />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" . "></TextView>
+
+            <EditText
+                android:id="@+id/cost_editText2"
+                style="@style/EditText"
+                android:inputType="number"
+                android:layout_weight="5"
+                />
+
+            <TextView
+                style="@style/SimpleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" € "></TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     <DatePicker
         android:id="@+id/cost_date_picker"
@@ -108,7 +99,7 @@
         android:calendarViewShown="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cost_text3"
+        app:layout_constraintTop_toBottomOf="@id/cost_linear1"
         app:layout_constraintBottom_toTopOf="@id/cost_button_add"
         ></DatePicker>
 
@@ -116,10 +107,8 @@
         android:id="@+id/cost_button_add"
         style="@style/Button"
         android:text="@string/add"
-        app:layout_constraintTop_toBottomOf="@id/cost_date_picker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

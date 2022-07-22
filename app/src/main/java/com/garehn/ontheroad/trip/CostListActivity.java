@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import com.garehn.ontheroad.R;
 import com.garehn.ontheroad.graphics.CostCellAdapter;
@@ -12,28 +13,30 @@ import java.util.List;
 
 public class CostListActivity extends CostBaseActivity implements View.OnClickListener {
 
-        private static final int GAME_ACTIVITY_REQUEST_CODE = 11;
+    private static final int GAME_ACTIVITY_REQUEST_CODE = 11;
 
-        //GRAPHICS
-        private ListView listView;
-        private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
-        private CostCellAdapter adapter;
+    //GRAPHICS
+    private ListView listView;
+    private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
+    private CostCellAdapter adapter;
 
-        //STRINGS
+    //STRINGS
     private static String TXT_DIALOG = "What do you want to do with this expense ?";
     private static String TXT_DIALOG_MODIFY = "modify";
     private static String TXT_DIALOG_DELETE = "delete";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cost_list);
         createCategories();
         createDatabase();
+        getTripId();
         adapter = new CostCellAdapter(CostListActivity.this, getCosts(), images);
         createGraphics();
     }
 
-    public void createGraphics(){
+    public void createGraphics() {
 
         //List of categories
         listView = findViewById(R.id.cost_list_view);
@@ -44,6 +47,7 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
                 sendDeleteMessage(getCosts().get(position).getId(), position);
             }
         });
+
     }
 
     /*public void createDatabase(){
@@ -53,7 +57,7 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
     }*/
 
     public List<Cost> getCosts(){
-            return costDao.getCosts(0);
+            return costDao.getCosts(tripId);
     }
 
     // OPEN A MESSAGE BOX
@@ -71,7 +75,8 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
 
                         Intent activity = new Intent(CostListActivity.this, CostModifyActivity.class);
                         activity.putExtra("Categories", categories);
-                        activity.putExtra("id", position);
+                        //activity.putExtra("id", position);
+                        activity.putExtra("id", itemId);
                         setResult(RESULT_OK, activity);
                         startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
                         finish();
@@ -92,7 +97,5 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
-        }
-
-
+    }
 }

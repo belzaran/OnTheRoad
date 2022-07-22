@@ -7,15 +7,31 @@
     <string name="cost">Expense</string>
     <string name="costs">Expenses</string>
     <string name="name">Name</string>
-    <string name="price">Price (in €)</string>
+    <string name="price">Price</string>
     <string name="category">Category</string>
     <string name="budget">Budget (in €)</string>
     <string name="duration">Duration (in days)</string>
+
+    <string name="accommodation">Accommodation</string>
+    <string name="food">Food</string>
+    <string name="transport">Transport</string>
+    <string name="activity">Activity</string>
+    <string name="gift">Gift</string>
+    <string name="other">Other</string>
+    <string name="add_category">Add category</string>
+    <string name="nights">Number of nights</string>
 
     <!-- Buttons -->
     <string name="add">Add</string>
     <string name="modify">Modify</string>
     <string name="listCost">EXPENSES</string>
     <string name="addCost">ADD EXPENSE</string>
+    <string name="close">CLOSE</string>
+    <string name="select">Select</string>
+
+    <!-- Errors -->
+    <string name="error_cents">Please enter a valid value</string>
+    <string name="error_empty">Please enter a value</string>
+    <string name="error_name">Please enter a name</string>
 
 </resources>

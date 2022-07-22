@@ -14,6 +14,7 @@ public abstract class CostBaseActivity extends AppCompatActivity {
     protected TripDatabase database;
     protected TripDao tripDao;
     protected CostDao costDao;
+    protected int tripId;
 
     //STRINGS
     protected String[] categories;
@@ -24,6 +25,7 @@ public abstract class CostBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         createCategories();
         createDatabase();
+        getTripId();
     }
 
     public void createDatabase(){
@@ -37,5 +39,16 @@ public abstract class CostBaseActivity extends AppCompatActivity {
         if (intent != null) {
             categories = intent.getStringArrayExtra("Categories");
         }
+    }
+
+    public int getTripId(){
+        Intent intent = getIntent();
+        if (intent != null) {
+            tripId = intent.getIntExtra("TripId", 0);
+        }
+        else{
+            tripId = 0;
+        }
+        return tripId;
     }
 }

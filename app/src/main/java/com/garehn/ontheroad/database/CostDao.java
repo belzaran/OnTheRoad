@@ -24,8 +24,8 @@ public interface CostDao {
     @Query("DELETE FROM Cost WHERE id = :expenseId")
     int deleteCost(long expenseId);
 
-    @Query("SELECT * FROM Cost WHERE categoryId = :categoryId")
-    List<Cost> getCategoryCost(int categoryId);
+    @Query("SELECT * FROM Cost WHERE categoryId = :categoryId AND tripId = :tripId")
+    List<Cost> getCategoryCost(int categoryId, long tripId);
 
     @Query("DELETE FROM Cost WHERE price = :price")
     int clean(float price);

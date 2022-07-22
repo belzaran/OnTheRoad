@@ -18,77 +18,40 @@
             android:id="@+id/main_chart"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/default_padding"
             style="@style/EditText"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/main_title"
-            app:layout_constraintBottom_toTopOf="@id/main_bar"/>
+            app:layout_constraintBottom_toTopOf="@id/main_button_add"/>
 
-    <ProgressBar
-        android:id="@+id/main_bar"
-        style="@style/ResultBar"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_chart"
-        app:layout_constraintBottom_toTopOf="@id/main_bar1" />
-
-    <TextView
-        android:id="@+id/main_bar_text"
-        style="@style/TextBar"
-        app:layout_constraintTop_toTopOf="@id/main_bar"
-        app:layout_constraintLeft_toLeftOf="@id/main_bar"
-        app:layout_constraintRight_toRightOf="@id/main_bar"
-        app:layout_constraintBottom_toBottomOf="@id/main_bar" />
-
-    <ProgressBar
-        android:id="@+id/main_bar1"
-        style="@style/ResultBar"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_bar"
-        app:layout_constraintBottom_toTopOf="@id/main_button_add" />
-
-    <TextView
-        android:id="@+id/main_bar_text1"
-        style="@style/TextBar"
-        app:layout_constraintTop_toTopOf="@id/main_bar1"
-        app:layout_constraintLeft_toLeftOf="@id/main_bar1"
-        app:layout_constraintRight_toRightOf="@id/main_bar1"
-        app:layout_constraintBottom_toBottomOf="@id/main_bar1" />
-
-    <Button
-        android:id="@+id/main_button_modify"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/Button"
-        android:text="@string/trip"
+    <ImageView
+        android:id="@+id/main_button_trip"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_luggage"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/main_button_add"
         />
 
-    <Button
+    <ImageView
         android:id="@+id/main_button_add"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/Button"
-        android:text="@string/addCost"
-        app:layout_constraintTop_toBottomOf="@id/main_bar1"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_plus"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/main_button_modify"
+        app:layout_constraintLeft_toRightOf="@id/main_button_trip"
         app:layout_constraintRight_toLeftOf="@id/main_button_list"
         />
 
-    <Button
+    <ImageView
         android:id="@+id/main_button_list"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/Button"
-        android:text="@string/listCost"
-        app:layout_constraintBottom_toBottomOf="@id/main_button_add"
-        app:layout_constraintTop_toTopOf="@id/main_button_add"
-        app:layout_constraintRight_toRightOf="parent"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_expenses"
+        app:layout_constraintTop_toBottomOf="@id/main_chart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/main_button_add"
+        app:layout_constraintRight_toRightOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
