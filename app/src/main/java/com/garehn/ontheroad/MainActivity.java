@@ -19,6 +19,8 @@ import com.garehn.ontheroad.trip.CostListActivity;
 import com.garehn.ontheroad.trip.CostTypeActivity;
 import com.garehn.ontheroad.trip.Trip;
 import com.garehn.ontheroad.trip.TripActionActivity;
+import com.garehn.ontheroad.trip.TripListActivity;
+import com.garehn.ontheroad.trip.TripSelectActivity;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
     //DATABASE
-    private int tripId = 0;
+    private int tripId;
     private TripDatabase database;
     private TripDao tripDao;
     private CostDao costDao;
@@ -77,7 +79,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         createDatabase();
         getTripId();
-        checkDatabase(tripId);
+        //isDatabaseEmpty();
+        //checkDatabase(tripId);
+        if(isTripSelected()){
+            SelectTrip();
+        }
         createGraphics();
         try {
             updateGraphics();
@@ -154,6 +160,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public void isDatabaseEmpty(){
+        if(tripDao != null){
+
+        }
+        else{
+            createBasicTrip();
+        }
+    }
+
+    public boolean isTripSelected() {
+        boolean b = false;
+
+        if (tripId == 0) {
+            b = true;
+        }
+        return b;
+    }
+
     public void createTrip() {
         Trip trip = new Trip();
         trip.setName("Paris");
@@ -166,11 +190,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void createBasicTrip() {
         Trip trip = new Trip();
-        trip.setName("");
-        trip.setBudget(0);
-        trip.setDuration(1);
+        trip.setName("Example");
+        trip.setBudget(500);
+        trip.setDuration(7);
         tripDao.createTrip(trip);
         tripDao.updateTrip(trip);
+        Log.i("ONTHEROAD_MAIN", String.format(LOG_TRIP, trip.getName()));
     }
 
     /*----------------------------------------------------------------------------------------------
@@ -253,6 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         if (intent != null) {
             tripId = intent.getIntExtra("TripId", 0);
+            Log.i("ONTHEROAD_MAIN", "* Getting tripId : " + tripId);
         }
         else tripId = 0;
         Log.i("ONTHEROAD_MAIN", "tripId = " + tripId);
@@ -382,6 +408,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /*----------------------------------------------------------------------------------------------
     METHODS
     ----------------------------------------------------------------------------------------------*/
+    public void SelectTrip(){
+        Intent activity = new Intent(MainActivity.this, TripListActivity.class);
+        activity.putExtra("Categories", categories);
+        activity.putExtra("TripId", tripId);
+        setResult(RESULT_OK, activity);
+        startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
+    }
 
     @Override
     public void onClick(View v) {
@@ -400,13 +433,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
         else if(v == button[2]){ // modify
-            Intent activity = new Intent(MainActivity.this, TripActionActivity.class);
+            Intent activity = new Intent(MainActivity.this, TripListActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("TripId", tripId);
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
 
-        finish();
     }
 }

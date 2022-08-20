@@ -33,6 +33,7 @@ public class AccommodationActivity extends CostBaseActivity implements View.OnCl
         setContentView(R.layout.activity_accommodation);
         createCategories();
         createDatabase();
+        getTripId();
         createGraphics();
     }
 
@@ -104,7 +105,7 @@ public class AccommodationActivity extends CostBaseActivity implements View.OnCl
             if(checkValues()) {
                 String name = editText[0].getText().toString();
                 float price = getPrice();
-                long tripId = 0;
+                //long tripId = 0;
                 //int categoryId = (int) spinner.getSelectedItemId();
                 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
                 calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());

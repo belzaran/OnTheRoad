@@ -18,7 +18,7 @@
         <activity android:name=".trip.CostBaseActivity" />
         <activity android:name=".trip.CostModifyActivity" />
         <activity android:name=".trip.CostListActivity" />
-        <activity android:name=".trip.CostActivity" />
+        <activity android:name=".trip.CostAddActivity" />
         <activity android:name=".trip.TripAddActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

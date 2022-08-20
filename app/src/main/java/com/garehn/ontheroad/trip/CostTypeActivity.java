@@ -1,13 +1,10 @@
 package com.garehn.ontheroad.trip;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.garehn.ontheroad.MainActivity;
 import com.garehn.ontheroad.R;
 
 public class CostTypeActivity extends CostBaseActivity implements View.OnClickListener {
@@ -40,7 +37,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
     public void onClick(View v) {
 
         if(v == button[0]){
-            Intent activity = new Intent(CostTypeActivity.this, CostActivity.class);
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 0);
             activity.putExtra("TripId", tripId);
@@ -48,7 +45,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
         else if(v == button[1]){
-            Intent activity = new Intent(CostTypeActivity.this, CostActivity.class);
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 1);
             activity.putExtra("TripId", tripId);
@@ -64,7 +61,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
         else if(v == button[3]){
-            Intent activity = new Intent(CostTypeActivity.this, CostActivity.class);
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 3);
             activity.putExtra("TripId", tripId);
@@ -72,7 +69,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
         else if(v == button[4]){
-            Intent activity = new Intent(CostTypeActivity.this, CostActivity.class);
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 4);
             activity.putExtra("TripId", tripId);
@@ -80,7 +77,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
         else if(v == button[5]){
-            Intent activity = new Intent(CostTypeActivity.this, CostActivity.class);
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 5);
             activity.putExtra("TripId", tripId);

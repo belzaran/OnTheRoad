@@ -65,7 +65,7 @@ public class TripAddActivity extends CostBaseActivity implements View.OnClickLis
         tripDao.createTrip(trip);
         tripDao.updateTrip(trip);
         Log.i("ONTHEROAD_ADDTRIP", String.format(LOG_TRIP, trip.getName()) + " | id = " + trip.getId());
-        Intent activity = new Intent(TripAddActivity.this, MainActivity.class);
+        Intent activity = new Intent(TripAddActivity.this, TripListActivity.class);
         activity.putExtra("Categories", categories);
         activity.putExtra("TripId", tripId);
         setResult(RESULT_OK, activity);

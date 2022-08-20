@@ -49,7 +49,7 @@ public class TripCellAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.trip_cell, null);
 
             TextView textName = convertView.findViewById(R.id.trip_cell_name);
-            textName.setText(trips.get(position).getId() + " | " + trips.get(position).getName());
+            textName.setText(trips.get(position).getName());
 
         return convertView;
     }

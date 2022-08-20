@@ -3,31 +3,21 @@ package com.garehn.ontheroad.trip;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 import com.garehn.ontheroad.MainActivity;
 import com.garehn.ontheroad.R;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Formatter;
-import java.util.List;
 import java.util.TimeZone;
 
-import static com.garehn.ontheroad.R.drawable.icon_accommodation;
-
-public class CostActivity extends CostBaseActivity implements View.OnClickListener{
+public class CostAddActivity extends CostBaseActivity implements View.OnClickListener{
 
     private static final int GAME_ACTIVITY_REQUEST_CODE = 10;
 
@@ -138,7 +128,7 @@ public class CostActivity extends CostBaseActivity implements View.OnClickListen
                 costDao.insertCost(cost);
                 costDao.updateCost(cost);
 
-                Intent activity = new Intent(CostActivity.this, MainActivity.class);
+                Intent activity = new Intent(CostAddActivity.this, MainActivity.class);
                 activity.putExtra("Categories", categories);
                 activity.putExtra("CategoryId", 5);
                 activity.putExtra("TripId", tripId);

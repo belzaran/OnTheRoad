@@ -96,7 +96,7 @@
 
     <style name="TripText">
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">@dimen/size_text</item>
+        <item name="android:textSize">@dimen/size_text_title</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

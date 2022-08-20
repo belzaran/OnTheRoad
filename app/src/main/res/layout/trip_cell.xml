@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
         android:text="Name"
-         style="@style/TripText"
+        style="@style/TripText"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
          app:layout_constraintRight_toRightOf="parent"
