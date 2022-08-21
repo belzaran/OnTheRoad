@@ -15,58 +15,138 @@
         app:layout_constraintTop_toTopOf="parent">
     </TextView>
 
+    <ImageView
+        android:id="@+id/cost_type_image_going"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_going"
+        app:layout_constraintTop_toTopOf="@id/cost_type_button_going"
+        app:layout_constraintBottom_toBottomOf="@id/cost_type_button_going"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cost_type_button_going"
+        />
+
+    <Button
+        android:id="@+id/cost_type_button_going"
+        android:layout_width="0px"
+        style="@style/ButtonType"
+        android:text="@string/going"
+        app:layout_constraintTop_toBottomOf="@id/cost_type_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_going"
+        app:layout_constraintBottom_toTopOf="@id/cost_type_button_accommodation"/>
+
+    <ImageView
+        android:id="@+id/cost_type_image_accommodation"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_accommodation"
+        app:layout_constraintTop_toTopOf="@id/cost_type_button_accommodation"
+        app:layout_constraintBottom_toBottomOf="@id/cost_type_button_accommodation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cost_type_button_accommodation"
+        />
+
     <Button
         android:id="@+id/cost_type_button_accommodation"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/accommodation"
-        app:layout_constraintTop_toBottomOf="@id/cost_type_title"
+        app:layout_constraintTop_toBottomOf="@id/cost_type_button_going"
         app:layout_constraintBottom_toTopOf="@id/cost_type_button_transport"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_accommodation"/>
+
+    <ImageView
+        android:id="@+id/cost_type_image_transport"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_transport"
+        app:layout_constraintTop_toTopOf="@id/cost_type_button_transport"
+        app:layout_constraintBottom_toBottomOf="@id/cost_type_button_transport"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cost_type_button_transport"
+        />
 
     <Button
         android:id="@+id/cost_type_button_transport"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/transport"
         app:layout_constraintTop_toBottomOf="@id/cost_type_button_accommodation"
         app:layout_constraintBottom_toTopOf="@id/cost_type_button_food"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_transport"/>
+
+    <ImageView
+    android:id="@+id/cost_type_image_food"
+    style="@style/ButtonImage"
+    android:src="@drawable/icon_food"
+    app:layout_constraintTop_toTopOf="@id/cost_type_button_food"
+    app:layout_constraintBottom_toBottomOf="@id/cost_type_button_food"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/cost_type_button_food"
+    />
 
     <Button
         android:id="@+id/cost_type_button_food"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/food"
         app:layout_constraintTop_toBottomOf="@id/cost_type_button_transport"
         app:layout_constraintBottom_toTopOf="@id/cost_type_button_activity"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_food"/>
+
+    <ImageView
+    android:id="@+id/cost_type_image_activity"
+    style="@style/ButtonImage"
+    android:src="@drawable/icon_activities"
+    app:layout_constraintTop_toTopOf="@id/cost_type_button_activity"
+    app:layout_constraintBottom_toBottomOf="@id/cost_type_button_activity"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/cost_type_button_activity"
+    />
 
     <Button
         android:id="@+id/cost_type_button_activity"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/activity"
         app:layout_constraintTop_toBottomOf="@id/cost_type_button_food"
         app:layout_constraintBottom_toTopOf="@id/cost_type_button_gift"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_activity"/>
+
+    <ImageView
+        android:id="@+id/cost_type_image_gift"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_gift"
+        app:layout_constraintTop_toTopOf="@id/cost_type_button_gift"
+        app:layout_constraintBottom_toBottomOf="@id/cost_type_button_gift"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cost_type_button_gift"
+        />
 
     <Button
         android:id="@+id/cost_type_button_gift"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/gift"
         app:layout_constraintTop_toBottomOf="@id/cost_type_button_activity"
         app:layout_constraintBottom_toTopOf="@id/cost_type_button_other"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_gift"/>
+
+    <ImageView
+        android:id="@+id/cost_type_image_other"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_other"
+        app:layout_constraintTop_toTopOf="@id/cost_type_button_other"
+        app:layout_constraintBottom_toBottomOf="@id/cost_type_button_other"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/cost_type_button_other"
+        />
 
     <Button
         android:id="@+id/cost_type_button_other"
-        style="@style/Button"
+        style="@style/ButtonType"
         android:text="@string/other"
         app:layout_constraintTop_toBottomOf="@id/cost_type_button_gift"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cost_type_image_other"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

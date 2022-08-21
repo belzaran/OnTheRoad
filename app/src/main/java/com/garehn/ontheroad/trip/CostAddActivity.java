@@ -26,7 +26,7 @@ public class CostAddActivity extends CostBaseActivity implements View.OnClickLis
     protected Button button;
     protected DatePicker datePicker;
     protected ImageView image;
-    private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
+    private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other, R.drawable.icon_going};
 
     // STRINGS
     /*protected static String LOG_DATABASE = "Creating database";

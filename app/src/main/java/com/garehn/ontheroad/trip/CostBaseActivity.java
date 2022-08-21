@@ -51,4 +51,5 @@ public abstract class CostBaseActivity extends AppCompatActivity {
         }
         return tripId;
     }
+
 }

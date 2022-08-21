@@ -11,7 +11,7 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
 
     private static final int GAME_ACTIVITY_REQUEST_CODE = 13;
 
-    Button button[] = new Button[6];
+    Button button[] = new Button[7];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,8 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
         button[3] = findViewById(R.id.cost_type_button_activity);
         button[4] = findViewById(R.id.cost_type_button_gift);
         button[5] = findViewById(R.id.cost_type_button_other);
-        for(int i = 0; i<6; i++){
+        button[6] = findViewById(R.id.cost_type_button_going);
+        for(int i = 0; i<button.length; i++){
             button[i].setOnClickListener(this);
         }
     }
@@ -80,6 +81,14 @@ public class CostTypeActivity extends CostBaseActivity implements View.OnClickLi
             Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("CategoryId", 5);
+            activity.putExtra("TripId", tripId);
+            setResult(RESULT_OK, activity);
+            startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
+        }
+        else if(v == button[6]){
+            Intent activity = new Intent(CostTypeActivity.this, CostAddActivity.class);
+            activity.putExtra("Categories", categories);
+            activity.putExtra("CategoryId", 6);
             activity.putExtra("TripId", tripId);
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);

@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,7 +22,7 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
 
     //GRAPHICS
     private ListView listView;
-    private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other};
+    private Integer[] images = {R.drawable.icon_food, R.drawable.icon_transport, R.drawable.icon_accommodation, R.drawable.icon_activities, R.drawable.icon_gift, R.drawable.icon_other, R.drawable.icon_going};
     private CostCellAdapter adapter;
     private ImageView[] button = new ImageView[2];
 
@@ -87,8 +88,9 @@ public class CostListActivity extends CostBaseActivity implements View.OnClickLi
 
                         Intent activity = new Intent(CostListActivity.this, CostModifyActivity.class);
                         activity.putExtra("Categories", categories);
-                        //activity.putExtra("id", position);
-                        activity.putExtra("id", itemId);
+                        activity.putExtra("id", position);
+                        //activity.putExtra("id", (Parcelable) adapter.getCosts().get(position));
+                        activity.putExtra("TripId", tripId);
                         setResult(RESULT_OK, activity);
                         startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
                         finish();

@@ -46,6 +46,8 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         setContentView(R.layout.activity_cost_modify);
         createCategories();
         createDatabase();
+        getTripId();
+        getCostId();
         try {
             createGraphics();
         } catch (ParseException e) {
@@ -53,16 +55,15 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         }
     }
 
-
     public void createGraphics() throws ParseException {
 
         // EDIT TEXT
         editText[0] = findViewById(R.id.cost_modify_editText0);
         editText[1] = findViewById(R.id.cost_modify_editText1);
-        editText[2] = findViewById(R.id.cost_modify_editText2);
+        //editText[2] = findViewById(R.id.cost_modify_editText2);
 
-        editText[0].setText(costDao.getCosts(0).get((int) costId).getName());
-        float price = costDao.getCosts(0).get((int) costId).getPrice();
+        editText[0].setText(costDao.getCosts(tripId).get((int) costId).getName());
+        float price = costDao.getCosts(tripId).get((int) costId).getPrice();
         editText[1].setText(""+ price);
 //      editText[2].setText(0); // to change when multiples trips will be available
 
@@ -77,7 +78,7 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
             list.add(categories[i]);
         }
 
-        int categoryId = costDao.getCosts(0).get(costId).getCategoryId();
+        int categoryId = costDao.getCosts(tripId).get(costId).getCategoryId();
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -87,13 +88,24 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         // DATE
         datePicker = findViewById(R.id.cost_modify_date_picker);
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-        String dateString = costDao.getCosts(0).get((int) costId).getDate();
+        String dateString = costDao.getCosts(tripId).get((int) costId).getDate();
        // Date date = calendar.getTime();
         Date date = formatter.parse(dateString);
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         calendar.setTime(date);
         //date.parse(dateString, formatter);
         datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public int getCostId(){
+        Intent intent = getIntent();
+        if (intent != null) {
+            costId = intent.getIntExtra("id", 0);
+        }
+        else{
+            costId = 0;
+        }
+        return costId;
     }
 
 
@@ -117,7 +129,7 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         if (v == button) {
             String name = editText[0].getText().toString();
             float price = Float.valueOf(editText[1].getText().toString());
-            long tripId = Long.valueOf(editText[2].getText().toString());
+            //long tripId = Long.valueOf(editText[2].getText().toString());
             int categoryId = (int) spinner.getSelectedItemId();
             Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
             calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
@@ -125,7 +137,7 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
             SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
             Date date = calendar.getTime();
             String formattedDate = formatter.format(date);
-            Cost cost = costDao.getCosts(0).get(costId);
+            Cost cost = costDao.getCosts(tripId).get(costId);
             cost.setName(name);
             cost.setPrice(price);
             cost.setCategoryId(categoryId);

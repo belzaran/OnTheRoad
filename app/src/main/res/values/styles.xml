@@ -69,6 +69,17 @@
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="ButtonType">
+        <item name="layout_constraintHorizontal_bias">0.7</item>
+        <item name="android:layout_height">@dimen/button_size</item>
+        <item name="android:layout_width">0px</item>
+        <item name="android:textSize">@dimen/size_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlank</item>
+        <item name="android:layout_margin">@dimen/default_padding</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
     <style name="ButtonImage">
         <item name="android:layout_width">@dimen/button_size</item>
         <item name="android:layout_height">@dimen/button_size</item>

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TripDatabase database;
     private TripDao tripDao;
     private CostDao costDao;
-    private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others"};
+    private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others", "GoingAndComing"};
 
 
     /*----------------------------------------------------------------------------------------------

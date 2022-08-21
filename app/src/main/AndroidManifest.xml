@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_road_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnTheRoad">
+        <activity
+            android:name=".Stats"
+            android:exported="false" />
         <activity android:name=".trip.TripSelectActivity" />
         <activity android:name=".trip.TripListActivity" />
         <activity android:name=".trip.TripActionActivity" />
