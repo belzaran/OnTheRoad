@@ -6,6 +6,7 @@
     <string name="trip">Trip</string>
     <string name="cost">Expense</string>
     <string name="costs">Expenses</string>
+    <string name="stats">Statistics</string>
     <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="category">Category</string>

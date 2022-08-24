@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnTheRoad">
         <activity
-            android:name=".Stats"
+            android:name=".StatsActivity"
             android:exported="false" />
         <activity android:name=".trip.TripSelectActivity" />
         <activity android:name=".trip.TripListActivity" />

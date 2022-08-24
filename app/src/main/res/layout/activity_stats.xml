@@ -4,6 +4,232 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Stats">
+    tools:context=".StatsActivity">
+
+    <TextView
+        android:id="@+id/stats_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Title"
+        android:text="@string/stats"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+    </TextView>
+
+    <ImageView
+    android:id="@+id/stats_image_0"
+    style="@style/ButtonImage"
+    android:src="@drawable/icon_food"
+    app:layout_constraintTop_toTopOf="@id/stats_0"
+    app:layout_constraintBottom_toBottomOf="@id/stats_0"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/stats_0"
+    />
+
+    <TextView
+        android:id="@+id/stats_0"
+        style="@style/Statistics"
+        android:layout_width="0px"
+        app:layout_constraintBottom_toTopOf="@id/stats_1"
+        app:layout_constraintRight_toLeftOf="@id/stats_0_text"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_0"
+        app:layout_constraintTop_toBottomOf="@id/stats_title">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_0_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_0"
+        app:layout_constraintBottom_toBottomOf="@id/stats_0">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_1"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_transport"
+        app:layout_constraintTop_toTopOf="@id/stats_1"
+        app:layout_constraintBottom_toBottomOf="@id/stats_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_1"
+        />
+
+    <TextView
+        android:id="@+id/stats_1"
+        style="@style/Statistics"
+        android:layout_width="0px"
+        app:layout_constraintBottom_toTopOf="@id/stats_2"
+        app:layout_constraintRight_toLeftOf="@id/stats_1_text"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_1"
+        app:layout_constraintTop_toBottomOf="@id/stats_0">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_1_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_1"
+        app:layout_constraintBottom_toBottomOf="@id/stats_1">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_2"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_accommodation"
+        app:layout_constraintTop_toTopOf="@id/stats_2"
+        app:layout_constraintBottom_toBottomOf="@id/stats_2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_2"
+        />
+
+    <TextView
+        android:id="@+id/stats_2"
+        style="@style/Statistics"
+        android:layout_width="0px"
+        app:layout_constraintBottom_toTopOf="@id/stats_3"
+        app:layout_constraintRight_toLeftOf="@id/stats_2_text"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_2"
+        app:layout_constraintTop_toBottomOf="@id/stats_1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_2_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_2"
+        app:layout_constraintBottom_toBottomOf="@id/stats_2">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_3"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_activities"
+        app:layout_constraintTop_toTopOf="@id/stats_3"
+        app:layout_constraintBottom_toBottomOf="@id/stats_3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_3"
+        />
+
+    <TextView
+        android:id="@+id/stats_3"
+        style="@style/Statistics"
+        android:layout_width="0px"
+        app:layout_constraintBottom_toTopOf="@id/stats_4"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_3"
+        app:layout_constraintRight_toLeftOf="@id/stats_3_text"
+        app:layout_constraintTop_toBottomOf="@id/stats_2">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_3_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_3"
+        app:layout_constraintBottom_toBottomOf="@id/stats_3">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_4"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_gift"
+        app:layout_constraintTop_toTopOf="@id/stats_4"
+        app:layout_constraintBottom_toBottomOf="@id/stats_4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_4"
+        />
+
+    <TextView
+        android:id="@+id/stats_4"
+        style="@style/Statistics"
+        app:layout_constraintBottom_toTopOf="@id/stats_5"
+        app:layout_constraintRight_toLeftOf="@id/stats_4_text"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_4"
+        app:layout_constraintTop_toBottomOf="@id/stats_3">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_4_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_4"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_4"
+        app:layout_constraintBottom_toBottomOf="@id/stats_4">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_5"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_other"
+        app:layout_constraintTop_toTopOf="@id/stats_5"
+        app:layout_constraintBottom_toBottomOf="@id/stats_5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_5"
+        />
+
+    <TextView
+        android:id="@+id/stats_5"
+        style="@style/Statistics"
+        app:layout_constraintBottom_toTopOf="@id/stats_6"
+        app:layout_constraintRight_toLeftOf="@id/stats_5_text"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_5"
+        app:layout_constraintTop_toBottomOf="@id/stats_4">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_5_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_5"
+        app:layout_constraintBottom_toBottomOf="@id/stats_5">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_image_6"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_going"
+        app:layout_constraintTop_toTopOf="@id/stats_6"
+        app:layout_constraintBottom_toBottomOf="@id/stats_6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/stats_6"
+        />
+
+    <TextView
+        android:id="@+id/stats_6"
+        style="@style/Statistics"
+        app:layout_constraintBottom_toTopOf="@id/stats_return"
+        app:layout_constraintLeft_toRightOf="@id/stats_image_6"
+        app:layout_constraintRight_toLeftOf="@id/stats_6_text"
+        app:layout_constraintTop_toBottomOf="@id/stats_5">
+    </TextView>
+
+    <TextView
+        android:id="@+id/stats_6_text"
+        style="@style/StatisticsPrimary"
+        android:layout_width="0px"
+        app:layout_constraintTop_toTopOf="@id/stats_6"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/stats_6"
+        app:layout_constraintBottom_toBottomOf="@id/stats_6">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/stats_return"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_return"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

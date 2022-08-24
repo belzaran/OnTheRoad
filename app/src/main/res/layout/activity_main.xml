@@ -41,6 +41,16 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/main_button_trip"
+        app:layout_constraintRight_toLeftOf="@id/main_button_stats"
+        />
+
+    <ImageView
+        android:id="@+id/main_button_stats"
+        style="@style/ButtonImage"
+        android:src="@drawable/icon_stats"
+        app:layout_constraintTop_toBottomOf="@id/main_chart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/main_button_add"
         app:layout_constraintRight_toLeftOf="@id/main_button_list"
         />
 
@@ -50,7 +60,7 @@
         android:src="@drawable/icon_expenses"
         app:layout_constraintTop_toBottomOf="@id/main_chart"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/main_button_add"
+        app:layout_constraintLeft_toRightOf="@id/main_button_stats"
         app:layout_constraintRight_toRightOf="parent"
         />
 

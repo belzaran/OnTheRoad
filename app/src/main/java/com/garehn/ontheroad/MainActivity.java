@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected final String dateFormat = "dd MMM yyyy";
 
     //GRAPHICS
-    private ImageView[] button = new ImageView[3];
+    private ImageView[] button = new ImageView[4];
     private TextView textTitle;
     private PieChart pieChart; // x = data, y = value;
-    public static final int[] TRIP_COLORS = {
-            Color.rgb(255, 255, 255), Color.rgb(230, 30, 30), Color.rgb(100, 60, 180), Color.rgb(50, 180, 160),
+    public static final int[] TRIP_COLORS = {Color.rgb(255, 255, 255),
+            Color.rgb(125, 0, 125), Color.rgb(230, 30, 30), Color.rgb(100, 60, 180), Color.rgb(50, 180, 160),
             Color.rgb(230, 160, 30), Color.rgb(120, 140, 220), Color.rgb(220, 120, 160), Color.rgb(0, 0, 0)
     };
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TripDatabase database;
     private TripDao tripDao;
     private CostDao costDao;
-    private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others", "GoingAndComing"};
+    private String[] categories = {"Food", "Transport", "Accommodation", "Activities", "Gift", "Others", "Going and coming"};
 
 
     /*----------------------------------------------------------------------------------------------
@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button[0] = findViewById(R.id.main_button_add);
         button[1] = findViewById(R.id.main_button_list);
         button[2] = findViewById(R.id.main_button_trip);
+        button[3] = findViewById(R.id.main_button_stats);
         for(int i = 0; i < button.length; i++) {
             button[i].setOnClickListener(this);
         }
@@ -425,15 +426,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
-        else if(v == button[1]){ // list
+        else if(v == button[1]){ // costs list
             Intent activity = new Intent(MainActivity.this, CostListActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("TripId", tripId);
             setResult(RESULT_OK, activity);
             startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
         }
-        else if(v == button[2]){ // modify
+        else if(v == button[2]){ // trips
             Intent activity = new Intent(MainActivity.this, TripListActivity.class);
+            activity.putExtra("Categories", categories);
+            activity.putExtra("TripId", tripId);
+            setResult(RESULT_OK, activity);
+            startActivityForResult(activity, GAME_ACTIVITY_REQUEST_CODE);
+        }
+        else if(v == button[3]){ // stats
+            Intent activity = new Intent(MainActivity.this, StatsActivity.class);
             activity.putExtra("Categories", categories);
             activity.putExtra("TripId", tripId);
             setResult(RESULT_OK, activity);
