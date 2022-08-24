@@ -91,8 +91,9 @@ public class CostModifyActivity extends CostBaseActivity implements View.OnClick
         String dateString = costDao.getCosts(tripId).get((int) costId).getDate();
        // Date date = calendar.getTime();
         Date date = formatter.parse(dateString);
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         calendar.setTime(date);
+        calendar.add(Calendar.HOUR,12); // Without this fix, date bug arrive and date is shown one day before
         //date.parse(dateString, formatter);
         datePicker.updateDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
     }
